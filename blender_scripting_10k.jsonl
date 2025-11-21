@@ -1,0 +1,1006 @@
+{"prompt":"Create a cube in Blender using Python","completion":"import bpy\nbpy.ops.mesh.primitive_cube_add(size=2, enter_editmode=False, location=(0,0,0))"}
+{"prompt":"Create a sphere and apply a glossy material","completion":"import bpy\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)\nmat = bpy.data.materials.new(name='Glossy')\nmat.use_nodes = True\nnodes = mat.node_tree.nodes\nglossy = nodes.new('ShaderNodeBsdfGlossy')\nmat.node_tree.links.new(glossy.outputs[0], nodes['Material Output'].inputs[0])\nbpy.context.active_object.data.materials.append(mat)"}
+{"prompt":"Generate a Blender script that creates a pyramid mesh","completion":"import bpy\nimport bmesh\nmesh = bpy.data.meshes.new('Pyramid')\nobj = bpy.data.objects.new('Pyramid', mesh)\nbpy.context.collection.objects.link(obj)\nbm = bmesh.new()\nverts = [bm.verts.new((0,0,1)), bm.verts.new((-1,-1,0)), bm.verts.new((1,-1,0)), bm.verts.new((1,1,0)), bm.verts.new((-1,1,0))]\nbm.faces.new((verts[0], verts[1], verts[2]))\nbm.faces.new((verts[0], verts[2], verts[3]))\nbm.faces.new((verts[0], verts[3], verts[4]))\nbm.faces.new((verts[0], verts[4], verts[1]))\nbm.faces.new((verts[1], verts[2], verts[3], verts[4]))\nbm.to_mesh(mesh)\nbm.free()"}
+{"prompt":"Create a material with emission and assign it to the active object","completion":"import bpy\nmat = bpy.data.materials.new(name='Emissive')\nmat.use_nodes = True\nnodes = mat.node_tree.nodes\nemission = nodes.new('ShaderNodeEmission')\nemission.inputs[1].default_value = 10\nmat.node_tree.links.new(emission.outputs[0], nodes['Material Output'].inputs[0])\nbpy.context.active_object.data.materials.append(mat)"}
+{"prompt":"Animate a cube moving along the X axis","completion":"import bpy\nobj = bpy.context.active_object\nobj.location.x = 0\nobj.keyframe_insert(data_path='location', frame=1)\nobj.location.x = 5\nobj.keyframe_insert(data_path='location', frame=50)"}
+{"prompt":"Create a Blender script that adds a subdivision modifier","completion":"import bpy\nobj = bpy.context.active_object\nsubdiv = obj.modifiers.new(name='Subdiv', type='SUBSURF')\nsubdiv.levels = 3"}
+{"prompt": "Write a Blender Python script to create a cube.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cube_add(size=2)"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to create a torus.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_torus_add()"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to move an object to location (1,2,3).", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.location = (1,2,3)"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to create a torus.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_torus_add()"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to delete all objects.", "completion": "import bpy\n\nbpy.ops.object.select_all(action='SELECT')\nbpy.ops.object.delete()"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to create a cube.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cube_add(size=2)"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to move an object to location (1,2,3).", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.location = (1,2,3)"}
+{"prompt": "Write a Blender Python script to delete all objects.", "completion": "import bpy\n\nbpy.ops.object.select_all(action='SELECT')\nbpy.ops.object.delete()"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to move an object to location (1,2,3).", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.location = (1,2,3)"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to delete all objects.", "completion": "import bpy\n\nbpy.ops.object.select_all(action='SELECT')\nbpy.ops.object.delete()"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to delete all objects.", "completion": "import bpy\n\nbpy.ops.object.select_all(action='SELECT')\nbpy.ops.object.delete()"}
+{"prompt": "Write a Blender Python script to move an object to location (1,2,3).", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.location = (1,2,3)"}
+{"prompt": "Write a Blender Python script to move an object to location (1,2,3).", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.location = (1,2,3)"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to delete all objects.", "completion": "import bpy\n\nbpy.ops.object.select_all(action='SELECT')\nbpy.ops.object.delete()"}
+{"prompt": "Write a Blender Python script to delete all objects.", "completion": "import bpy\n\nbpy.ops.object.select_all(action='SELECT')\nbpy.ops.object.delete()"}
+{"prompt": "Write a Blender Python script to move an object to location (1,2,3).", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.location = (1,2,3)"}
+{"prompt": "Write a Blender Python script to move an object to location (1,2,3).", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.location = (1,2,3)"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to create a cube.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cube_add(size=2)"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to create a cube.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cube_add(size=2)"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to move an object to location (1,2,3).", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.location = (1,2,3)"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to create a torus.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_torus_add()"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to create a cube.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cube_add(size=2)"}
+{"prompt": "Write a Blender Python script to create a torus.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_torus_add()"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to create a torus.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_torus_add()"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to move an object to location (1,2,3).", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.location = (1,2,3)"}
+{"prompt": "Write a Blender Python script to create a cube.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cube_add(size=2)"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to delete all objects.", "completion": "import bpy\n\nbpy.ops.object.select_all(action='SELECT')\nbpy.ops.object.delete()"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to move an object to location (1,2,3).", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.location = (1,2,3)"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to create a torus.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_torus_add()"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to move an object to location (1,2,3).", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.location = (1,2,3)"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to delete all objects.", "completion": "import bpy\n\nbpy.ops.object.select_all(action='SELECT')\nbpy.ops.object.delete()"}
+{"prompt": "Write a Blender Python script to create a cube.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cube_add(size=2)"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to move an object to location (1,2,3).", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.location = (1,2,3)"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to create a cube.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cube_add(size=2)"}
+{"prompt": "Write a Blender Python script to move an object to location (1,2,3).", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.location = (1,2,3)"}
+{"prompt": "Write a Blender Python script to create a cube.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cube_add(size=2)"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to create a torus.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_torus_add()"}
+{"prompt": "Write a Blender Python script to create a torus.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_torus_add()"}
+{"prompt": "Write a Blender Python script to create a torus.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_torus_add()"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to create a torus.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_torus_add()"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to move an object to location (1,2,3).", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.location = (1,2,3)"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to create a torus.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_torus_add()"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to create a cube.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cube_add(size=2)"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to create a cube.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cube_add(size=2)"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to delete all objects.", "completion": "import bpy\n\nbpy.ops.object.select_all(action='SELECT')\nbpy.ops.object.delete()"}
+{"prompt": "Write a Blender Python script to create a cube.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cube_add(size=2)"}
+{"prompt": "Write a Blender Python script to delete all objects.", "completion": "import bpy\n\nbpy.ops.object.select_all(action='SELECT')\nbpy.ops.object.delete()"}
+{"prompt": "Write a Blender Python script to delete all objects.", "completion": "import bpy\n\nbpy.ops.object.select_all(action='SELECT')\nbpy.ops.object.delete()"}
+{"prompt": "Write a Blender Python script to move an object to location (1,2,3).", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.location = (1,2,3)"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to create a torus.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_torus_add()"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to delete all objects.", "completion": "import bpy\n\nbpy.ops.object.select_all(action='SELECT')\nbpy.ops.object.delete()"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to move an object to location (1,2,3).", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.location = (1,2,3)"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to move an object to location (1,2,3).", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.location = (1,2,3)"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to delete all objects.", "completion": "import bpy\n\nbpy.ops.object.select_all(action='SELECT')\nbpy.ops.object.delete()"}
+{"prompt": "Write a Blender Python script to delete all objects.", "completion": "import bpy\n\nbpy.ops.object.select_all(action='SELECT')\nbpy.ops.object.delete()"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to delete all objects.", "completion": "import bpy\n\nbpy.ops.object.select_all(action='SELECT')\nbpy.ops.object.delete()"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to move an object to location (1,2,3).", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.location = (1,2,3)"}
+{"prompt": "Write a Blender Python script to delete all objects.", "completion": "import bpy\n\nbpy.ops.object.select_all(action='SELECT')\nbpy.ops.object.delete()"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to move an object to location (1,2,3).", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.location = (1,2,3)"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to create a torus.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_torus_add()"}
+{"prompt": "Write a Blender Python script to create a torus.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_torus_add()"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to create a cube.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cube_add(size=2)"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to create a cube.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cube_add(size=2)"}
+{"prompt": "Write a Blender Python script to move an object to location (1,2,3).", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.location = (1,2,3)"}
+{"prompt": "Write a Blender Python script to create a torus.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_torus_add()"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to delete all objects.", "completion": "import bpy\n\nbpy.ops.object.select_all(action='SELECT')\nbpy.ops.object.delete()"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to move an object to location (1,2,3).", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.location = (1,2,3)"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to create a torus.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_torus_add()"}
+{"prompt": "Write a Blender Python script to move an object to location (1,2,3).", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.location = (1,2,3)"}
+{"prompt": "Write a Blender Python script to delete all objects.", "completion": "import bpy\n\nbpy.ops.object.select_all(action='SELECT')\nbpy.ops.object.delete()"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to move an object to location (1,2,3).", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.location = (1,2,3)"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to delete all objects.", "completion": "import bpy\n\nbpy.ops.object.select_all(action='SELECT')\nbpy.ops.object.delete()"}
+{"prompt": "Write a Blender Python script to delete all objects.", "completion": "import bpy\n\nbpy.ops.object.select_all(action='SELECT')\nbpy.ops.object.delete()"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to move an object to location (1,2,3).", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.location = (1,2,3)"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to create a torus.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_torus_add()"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to move an object to location (1,2,3).", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.location = (1,2,3)"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to create a cube.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cube_add(size=2)"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to create a torus.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_torus_add()"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to move an object to location (1,2,3).", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.location = (1,2,3)"}
+{"prompt": "Write a Blender Python script to create a torus.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_torus_add()"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to create a cube.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cube_add(size=2)"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to create a torus.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_torus_add()"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to create a torus.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_torus_add()"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to create a cube.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cube_add(size=2)"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to move an object to location (1,2,3).", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.location = (1,2,3)"}
+{"prompt": "Write a Blender Python script to move an object to location (1,2,3).", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.location = (1,2,3)"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to delete all objects.", "completion": "import bpy\n\nbpy.ops.object.select_all(action='SELECT')\nbpy.ops.object.delete()"}
+{"prompt": "Write a Blender Python script to move an object to location (1,2,3).", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.location = (1,2,3)"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to delete all objects.", "completion": "import bpy\n\nbpy.ops.object.select_all(action='SELECT')\nbpy.ops.object.delete()"}
+{"prompt": "Write a Blender Python script to create a cube.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cube_add(size=2)"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to delete all objects.", "completion": "import bpy\n\nbpy.ops.object.select_all(action='SELECT')\nbpy.ops.object.delete()"}
+{"prompt": "Write a Blender Python script to create a cube.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cube_add(size=2)"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to delete all objects.", "completion": "import bpy\n\nbpy.ops.object.select_all(action='SELECT')\nbpy.ops.object.delete()"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to move an object to location (1,2,3).", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.location = (1,2,3)"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to create a cube.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cube_add(size=2)"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to create a torus.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_torus_add()"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to create a torus.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_torus_add()"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to create a torus.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_torus_add()"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to create a cube.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cube_add(size=2)"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to delete all objects.", "completion": "import bpy\n\nbpy.ops.object.select_all(action='SELECT')\nbpy.ops.object.delete()"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to move an object to location (1,2,3).", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.location = (1,2,3)"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to move an object to location (1,2,3).", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.location = (1,2,3)"}
+{"prompt": "Write a Blender Python script to create a cube.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cube_add(size=2)"}
+{"prompt": "Write a Blender Python script to create a torus.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_torus_add()"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to create a torus.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_torus_add()"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to delete all objects.", "completion": "import bpy\n\nbpy.ops.object.select_all(action='SELECT')\nbpy.ops.object.delete()"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to create a cube.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cube_add(size=2)"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to create a cube.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cube_add(size=2)"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to create a torus.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_torus_add()"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to create a cube.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cube_add(size=2)"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to create a cube.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cube_add(size=2)"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to create a torus.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_torus_add()"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to create a cube.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cube_add(size=2)"}
+{"prompt": "Write a Blender Python script to move an object to location (1,2,3).", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.location = (1,2,3)"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to create a torus.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_torus_add()"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to delete all objects.", "completion": "import bpy\n\nbpy.ops.object.select_all(action='SELECT')\nbpy.ops.object.delete()"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to delete all objects.", "completion": "import bpy\n\nbpy.ops.object.select_all(action='SELECT')\nbpy.ops.object.delete()"}
+{"prompt": "Write a Blender Python script to create a torus.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_torus_add()"}
+{"prompt": "Write a Blender Python script to create a torus.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_torus_add()"}
+{"prompt": "Write a Blender Python script to delete all objects.", "completion": "import bpy\n\nbpy.ops.object.select_all(action='SELECT')\nbpy.ops.object.delete()"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to move an object to location (1,2,3).", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.location = (1,2,3)"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to delete all objects.", "completion": "import bpy\n\nbpy.ops.object.select_all(action='SELECT')\nbpy.ops.object.delete()"}
+{"prompt": "Write a Blender Python script to create a cube.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cube_add(size=2)"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to create a torus.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_torus_add()"}
+{"prompt": "Write a Blender Python script to create a torus.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_torus_add()"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to create a torus.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_torus_add()"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to create a torus.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_torus_add()"}
+{"prompt": "Write a Blender Python script to create a cube.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cube_add(size=2)"}
+{"prompt": "Write a Blender Python script to create a torus.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_torus_add()"}
+{"prompt": "Write a Blender Python script to move an object to location (1,2,3).", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.location = (1,2,3)"}
+{"prompt": "Write a Blender Python script to create a torus.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_torus_add()"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to delete all objects.", "completion": "import bpy\n\nbpy.ops.object.select_all(action='SELECT')\nbpy.ops.object.delete()"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to delete all objects.", "completion": "import bpy\n\nbpy.ops.object.select_all(action='SELECT')\nbpy.ops.object.delete()"}
+{"prompt": "Write a Blender Python script to create a cube.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cube_add(size=2)"}
+{"prompt": "Write a Blender Python script to delete all objects.", "completion": "import bpy\n\nbpy.ops.object.select_all(action='SELECT')\nbpy.ops.object.delete()"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to create a cube.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cube_add(size=2)"}
+{"prompt": "Write a Blender Python script to create a torus.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_torus_add()"}
+{"prompt": "Write a Blender Python script to move an object to location (1,2,3).", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.location = (1,2,3)"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to create a torus.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_torus_add()"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to move an object to location (1,2,3).", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.location = (1,2,3)"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to move an object to location (1,2,3).", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.location = (1,2,3)"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to move an object to location (1,2,3).", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.location = (1,2,3)"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to create a cube.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cube_add(size=2)"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to create a cube.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cube_add(size=2)"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to create a cube.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cube_add(size=2)"}
+{"prompt": "Write a Blender Python script to create a torus.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_torus_add()"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to move an object to location (1,2,3).", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.location = (1,2,3)"}
+{"prompt": "Write a Blender Python script to delete all objects.", "completion": "import bpy\n\nbpy.ops.object.select_all(action='SELECT')\nbpy.ops.object.delete()"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to create a cube.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cube_add(size=2)"}
+{"prompt": "Write a Blender Python script to create a torus.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_torus_add()"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to create a cube.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cube_add(size=2)"}
+{"prompt": "Write a Blender Python script to move an object to location (1,2,3).", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.location = (1,2,3)"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to create a torus.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_torus_add()"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to create a torus.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_torus_add()"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to move an object to location (1,2,3).", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.location = (1,2,3)"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to delete all objects.", "completion": "import bpy\n\nbpy.ops.object.select_all(action='SELECT')\nbpy.ops.object.delete()"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to create a cube.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cube_add(size=2)"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to create a torus.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_torus_add()"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to move an object to location (1,2,3).", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.location = (1,2,3)"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to move an object to location (1,2,3).", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.location = (1,2,3)"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to create a torus.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_torus_add()"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to create a cube.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cube_add(size=2)"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to delete all objects.", "completion": "import bpy\n\nbpy.ops.object.select_all(action='SELECT')\nbpy.ops.object.delete()"}
+{"prompt": "Write a Blender Python script to create a torus.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_torus_add()"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to move an object to location (1,2,3).", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.location = (1,2,3)"}
+{"prompt": "Write a Blender Python script to move an object to location (1,2,3).", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.location = (1,2,3)"}
+{"prompt": "Write a Blender Python script to create a torus.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_torus_add()"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to delete all objects.", "completion": "import bpy\n\nbpy.ops.object.select_all(action='SELECT')\nbpy.ops.object.delete()"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to create a cube.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cube_add(size=2)"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to create a torus.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_torus_add()"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to delete all objects.", "completion": "import bpy\n\nbpy.ops.object.select_all(action='SELECT')\nbpy.ops.object.delete()"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to move an object to location (1,2,3).", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.location = (1,2,3)"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to create a cube.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cube_add(size=2)"}
+{"prompt": "Write a Blender Python script to create a cube.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cube_add(size=2)"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to create a torus.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_torus_add()"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to create a cube.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cube_add(size=2)"}
+{"prompt": "Write a Blender Python script to create a torus.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_torus_add()"}
+{"prompt": "Write a Blender Python script to delete all objects.", "completion": "import bpy\n\nbpy.ops.object.select_all(action='SELECT')\nbpy.ops.object.delete()"}
+{"prompt": "Write a Blender Python script to delete all objects.", "completion": "import bpy\n\nbpy.ops.object.select_all(action='SELECT')\nbpy.ops.object.delete()"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to move an object to location (1,2,3).", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.location = (1,2,3)"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to create a torus.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_torus_add()"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to create a torus.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_torus_add()"}
+{"prompt": "Write a Blender Python script to move an object to location (1,2,3).", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.location = (1,2,3)"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to delete all objects.", "completion": "import bpy\n\nbpy.ops.object.select_all(action='SELECT')\nbpy.ops.object.delete()"}
+{"prompt": "Write a Blender Python script to create a cube.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cube_add(size=2)"}
+{"prompt": "Write a Blender Python script to delete all objects.", "completion": "import bpy\n\nbpy.ops.object.select_all(action='SELECT')\nbpy.ops.object.delete()"}
+{"prompt": "Write a Blender Python script to delete all objects.", "completion": "import bpy\n\nbpy.ops.object.select_all(action='SELECT')\nbpy.ops.object.delete()"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to create a torus.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_torus_add()"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to create a cube.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cube_add(size=2)"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to create a torus.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_torus_add()"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to create a cube.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cube_add(size=2)"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to create a torus.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_torus_add()"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to move an object to location (1,2,3).", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.location = (1,2,3)"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to create a cube.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cube_add(size=2)"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to move an object to location (1,2,3).", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.location = (1,2,3)"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to create a torus.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_torus_add()"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to delete all objects.", "completion": "import bpy\n\nbpy.ops.object.select_all(action='SELECT')\nbpy.ops.object.delete()"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to delete all objects.", "completion": "import bpy\n\nbpy.ops.object.select_all(action='SELECT')\nbpy.ops.object.delete()"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to create a cube.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cube_add(size=2)"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to delete all objects.", "completion": "import bpy\n\nbpy.ops.object.select_all(action='SELECT')\nbpy.ops.object.delete()"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to create a cube.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cube_add(size=2)"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to create a cube.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cube_add(size=2)"}
+{"prompt": "Write a Blender Python script to delete all objects.", "completion": "import bpy\n\nbpy.ops.object.select_all(action='SELECT')\nbpy.ops.object.delete()"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to move an object to location (1,2,3).", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.location = (1,2,3)"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to create a torus.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_torus_add()"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to delete all objects.", "completion": "import bpy\n\nbpy.ops.object.select_all(action='SELECT')\nbpy.ops.object.delete()"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to create a cube.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cube_add(size=2)"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to move an object to location (1,2,3).", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.location = (1,2,3)"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to create a cube.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cube_add(size=2)"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to create a cube.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cube_add(size=2)"}
+{"prompt": "Write a Blender Python script to create a torus.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_torus_add()"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to delete all objects.", "completion": "import bpy\n\nbpy.ops.object.select_all(action='SELECT')\nbpy.ops.object.delete()"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to move an object to location (1,2,3).", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.location = (1,2,3)"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to create a cube.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cube_add(size=2)"}
+{"prompt": "Write a Blender Python script to move an object to location (1,2,3).", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.location = (1,2,3)"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to create a cube.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cube_add(size=2)"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to create a cube.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cube_add(size=2)"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to move an object to location (1,2,3).", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.location = (1,2,3)"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to create a cube.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cube_add(size=2)"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to create a torus.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_torus_add()"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to create a cube.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cube_add(size=2)"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to create a cube.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cube_add(size=2)"}
+{"prompt": "Write a Blender Python script to move an object to location (1,2,3).", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.location = (1,2,3)"}
+{"prompt": "Write a Blender Python script to delete all objects.", "completion": "import bpy\n\nbpy.ops.object.select_all(action='SELECT')\nbpy.ops.object.delete()"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to create a torus.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_torus_add()"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to create a torus.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_torus_add()"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to create a torus.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_torus_add()"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to create a cube.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cube_add(size=2)"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to delete all objects.", "completion": "import bpy\n\nbpy.ops.object.select_all(action='SELECT')\nbpy.ops.object.delete()"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to create a torus.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_torus_add()"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to create a torus.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_torus_add()"}
+{"prompt": "Write a Blender Python script to move an object to location (1,2,3).", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.location = (1,2,3)"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to create a torus.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_torus_add()"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to create a cube.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cube_add(size=2)"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to delete all objects.", "completion": "import bpy\n\nbpy.ops.object.select_all(action='SELECT')\nbpy.ops.object.delete()"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to create a cube.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cube_add(size=2)"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to create a cube.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cube_add(size=2)"}
+{"prompt": "Write a Blender Python script to move an object to location (1,2,3).", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.location = (1,2,3)"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to move an object to location (1,2,3).", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.location = (1,2,3)"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to create a cube.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cube_add(size=2)"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to move an object to location (1,2,3).", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.location = (1,2,3)"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to move an object to location (1,2,3).", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.location = (1,2,3)"}
+{"prompt": "Write a Blender Python script to move an object to location (1,2,3).", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.location = (1,2,3)"}
+{"prompt": "Write a Blender Python script to delete all objects.", "completion": "import bpy\n\nbpy.ops.object.select_all(action='SELECT')\nbpy.ops.object.delete()"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to create a torus.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_torus_add()"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to delete all objects.", "completion": "import bpy\n\nbpy.ops.object.select_all(action='SELECT')\nbpy.ops.object.delete()"}
+{"prompt": "Write a Blender Python script to delete all objects.", "completion": "import bpy\n\nbpy.ops.object.select_all(action='SELECT')\nbpy.ops.object.delete()"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to delete all objects.", "completion": "import bpy\n\nbpy.ops.object.select_all(action='SELECT')\nbpy.ops.object.delete()"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to create a torus.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_torus_add()"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to delete all objects.", "completion": "import bpy\n\nbpy.ops.object.select_all(action='SELECT')\nbpy.ops.object.delete()"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to create a cube.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cube_add(size=2)"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to move an object to location (1,2,3).", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.location = (1,2,3)"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to move an object to location (1,2,3).", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.location = (1,2,3)"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to create a cube.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cube_add(size=2)"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to create a torus.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_torus_add()"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to move an object to location (1,2,3).", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.location = (1,2,3)"}
+{"prompt": "Write a Blender Python script to move an object to location (1,2,3).", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.location = (1,2,3)"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to delete all objects.", "completion": "import bpy\n\nbpy.ops.object.select_all(action='SELECT')\nbpy.ops.object.delete()"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to move an object to location (1,2,3).", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.location = (1,2,3)"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to delete all objects.", "completion": "import bpy\n\nbpy.ops.object.select_all(action='SELECT')\nbpy.ops.object.delete()"}
+{"prompt": "Write a Blender Python script to move an object to location (1,2,3).", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.location = (1,2,3)"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to scale an object by 2.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.scale = (2,2,2)"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to create a cube.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cube_add(size=2)"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to delete all objects.", "completion": "import bpy\n\nbpy.ops.object.select_all(action='SELECT')\nbpy.ops.object.delete()"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to create a cube.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cube_add(size=2)"}
+{"prompt": "Write a Blender Python script to create a cube.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cube_add(size=2)"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to create a cube.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cube_add(size=2)"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to create a cube.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cube_add(size=2)"}
+{"prompt": "Write a Blender Python script to move an object to location (1,2,3).", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.location = (1,2,3)"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to delete all objects.", "completion": "import bpy\n\nbpy.ops.object.select_all(action='SELECT')\nbpy.ops.object.delete()"}
+{"prompt": "Write a Blender Python script to move an object to location (1,2,3).", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.location = (1,2,3)"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to delete all objects.", "completion": "import bpy\n\nbpy.ops.object.select_all(action='SELECT')\nbpy.ops.object.delete()"}
+{"prompt": "Write a Blender Python script to create a torus.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_torus_add()"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to create a cube.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cube_add(size=2)"}
+{"prompt": "Write a Blender Python script to create a cube.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cube_add(size=2)"}
+{"prompt": "Write a Blender Python script to move an object to location (1,2,3).", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.location = (1,2,3)"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to create a cylinder.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cylinder_add(radius=1, depth=2)"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to create a cone.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_cone_add(radius1=1, depth=2)"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to add a point light.", "completion": "import bpy\n\nbpy.ops.object.light_add(type='POINT', location=(2,2,2))"}
+{"prompt": "Write a Blender Python script to apply all transforms.", "completion": "import bpy\n\nbpy.ops.object.transform_apply(location=True, rotation=True, scale=True)"}
+{"prompt": "Write a Blender Python script to create a torus.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_torus_add()"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to add a camera.", "completion": "import bpy\n\nbpy.ops.object.camera_add(location=(0,0,5))"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to create a UV sphere.", "completion": "import bpy\n\nbpy.ops.mesh.primitive_uv_sphere_add(radius=1)"}
+{"prompt": "Write a Blender Python script to delete all objects.", "completion": "import bpy\n\nbpy.ops.object.select_all(action='SELECT')\nbpy.ops.object.delete()"}
+{"prompt": "Write a Blender Python script to duplicate the active object.", "completion": "import bpy\n\nbpy.ops.object.duplicate_move()"}
+{"prompt": "Write a Blender Python script to rotate an object 45 degrees on Z.", "completion": "import bpy\n\nobj = bpy.context.active_object\nobj.rotation_euler[2] = 0.785"}
